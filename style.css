@@ -1,0 +1,97 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-size: 16px;
+    font-family: sans-serif;
+    line-height: 1.5;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button, input, textarea {
+    font-family: inherit;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+body {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator {
+    width: 500px;
+    height: 800px;
+    background-color: #1C1C1C;
+    border-radius: 1rem;
+    border: 2px solid #FF9500;
+    padding: 1rem;
+}
+
+.display {
+    height: 200px;
+    color: #FFF;
+    font-size: 5rem;
+    padding-right: 2rem;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.buttons {
+    padding: 1rem 0rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.btn {
+    width: 95px;
+    height: 95px;
+    background-color: #505050;
+    color: #FFF;
+    border-radius: 50%;
+    font-size: 2rem;
+}
+
+.btn:active {
+    opacity: 75%;
+}
+.ac, .percent, .plus-minus  {
+    background-color: #D4D4D2;
+}
+
+.btn.operator {
+    background-color: #FF9500;
+}
+
+.btn.zero {
+    width: 190px;
+    border-radius: 2rem;
+}
+
+.btn.equals {
+    background-color: #FF9500;
+}
+
