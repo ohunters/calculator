@@ -7,17 +7,17 @@ let plusMinus = document.querySelector(".plus-minus");
 let operator = document.querySelector(".operator");
 let equals = document.querySelector(".equals");
 
-
-// Add Event Listeners
+// Event Listeners
 btns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
         let btnPressed = event.target;
         let btnValue = btnPressed.textContent;
+        let displayValue = display.textContent;
 
-        display.textContent = "";
-
-        if (btn.classList.contains("ac") || display === 0) {
+        if (btn.classList.contains("ac")) {
             display.textContent = ""
+        } else if (displayValue === "0") {
+            display.textContent = btnValue;
         } else {
             display.textContent += btnValue;
         }
