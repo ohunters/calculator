@@ -51,11 +51,25 @@ body {
 .display {
     height: 200px;
     color: #FFF;
-    font-size: 5rem;
+    font-size: 6rem;
     padding-right: 2rem;
     display: flex;
+    flex-direction: column
+}
+
+.display-top {
+    height: 40%;
+    font-size: 3rem;
+    display: flex;
     justify-content: end;
-    align-items: end;
+    align-items: center;
+}
+
+.display-bottom {
+    height: 60%;
+    display: flex;
+    justify-content: end;
+    align-items: baseline;
 }
 
 .buttons {
