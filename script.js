@@ -1,6 +1,6 @@
 // Select DOM Elements
-let displayBottom = document.querySelector(".display-bottom");
-let displayTop = document.querySelector(".display-top")
+let displayBottom = document.querySelector(".display-bottom span");
+let displayTop = document.querySelector(".display-top span");
 let btns = document.querySelectorAll(".btn");
 let ac = document.querySelector(".ac");
 let percent = document.querySelector(".percent");
@@ -12,7 +12,7 @@ let firstNumber = "";
 let secondNumber = "";
 let currentOperator = null;
 let displayValue = "0";
-let displayValueTop ""
+let displayValueTop = "";
 
 // Operator function
 function calculate(firstNumber, secondNumber, operator) {
@@ -32,36 +32,41 @@ function calculate(firstNumber, secondNumber, operator) {
 btns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
         let btnValue = event.target.textContent;
+
         if (!isNaN(btnValue) || btnValue === ".") {
             displayValue = displayValue === "0" ? btnValue : displayValue + btnValue;
             displayBottom.textContent = displayValue;
-            displayTop.textContent = displayValueTop;
         } else if (btn.classList.contains("operator")) {
             if (firstNumber === "") {
                 firstNumber = displayValue;
+            } else if (currentOperator) {
+                secondNumber = displayValue;
+                firstNumber = calculate(firstNumber, secondNumber, currentOperator);
             }
+
             currentOperator = btnValue;
-            displayValue = ""; 
-            displayTop.textContent += displayValue;
+            displayValueTop = firstNumber + " " + currentOperator;
+            displayTop.textContent = displayValueTop;
+            displayValue = "";
+            displayBottom.textContent = displayValue;
         } else if (btn.classList.contains("percent")) {
             if (displayValue !== "") {
                 displayValue = (Number(displayValue) / 100).toString();
                 displayBottom.textContent = displayValue;
-                displayTop.textContent += displayValue;
             }
         } else if (btn.classList.contains("plus-minus")) {
             if (displayValue !== "") {
                 displayValue = (Number(displayValue) * -1).toString();
                 displayBottom.textContent = displayValue;
-                displayTop.textContent += displayValue;
             }
         } else if (btn.classList.contains("equals")) {
             if (firstNumber !== "" && currentOperator && displayValue !== "") {
                 secondNumber = displayValue;
                 displayValue = calculate(firstNumber, secondNumber, currentOperator);
                 displayBottom.textContent = displayValue;
-                displayTop.textContent = displayValue;
-                firstNumber = displayValue; 
+                displayTop.textContent = displayValueTop + " " + secondNumber + " =";
+
+                firstNumber = displayValue;
                 secondNumber = "";
                 currentOperator = null;
             }
@@ -70,8 +75,9 @@ btns.forEach((btn) => {
             secondNumber = "";
             currentOperator = null;
             displayValue = "0";
+            displayValueTop = "";
             displayBottom.textContent = displayValue;
-            displayTop.textContent = displayValue;
+            displayTop.textContent = displayValueTop;
         }
     });
 });
